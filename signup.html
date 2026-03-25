@@ -4,89 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .signup-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #e67e22;
+        }
+
+        button {
+            width: 100%;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #d35400;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+        }
+
+        #error-message {
+            color: red;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <div class="signup-container">
         <h2>Signup</h2>
         <form action="/signup" method="POST">
-            <div class = "form-group">
-            <label for = "firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" required>
+            <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for = "lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname" required>
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" required>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for = "phonenumber">Phone Number:</label>
-            <input type="tel" id="phonenumber" name="phonenumber">
+            <div class="form-group">
+                <label for="phonenumber">Phone Number:</label>
+                <input type="tel" id="phonenumber" name="phonenumber">
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for = "AccountType">Account Type:</label>
-            <select id="AccountType" name="AccountType" required>
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-            </select>
+            <div class="form-group">
+                <label for="AccountType">Account Type:</label>
+                <select id="AccountType" name="AccountType" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for = "checkpasswordmatch">Check Password Match:</label>
-            <input type="checkbox" id="checkpasswordmatch" name="checkpasswordmatch">
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="checkpasswordmatch" name="checkpasswordmatch">
+                <label for="checkpasswordmatch">Check Password Match</label>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <label for = terms>Accept Terms and Conditions:</label>
-            <input type="checkbox" id="terms" name="terms" required>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Accept Terms and Conditions</label>
             </div>
-            <br><br>
 
-            <div class = "form-group">
-            <button type="submit">Sign Up</button>
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
             </div>
         </form>
+    </div>
+
     <script>
         const password = document.getElementById('password');
         const confirm = document.getElementById('confirm_password');
+        const matchCheckbox = document.getElementById('checkpasswordmatch');
+
         function checkMatch() {
             if (password.value !== confirm.value) {
-            confirm.setCustomValidity('Passwords do not match');
+                confirm.setCustomValidity('Passwords do not match');
+                if (matchCheckbox.checked) {
+                    console.log('Passwords do not match');
+                }
             } else {
-            confirm.setCustomValidity('');
+                confirm.setCustomValidity('');
             }
         }
-        password.addEventListener('change', checkMatch);
-        confirm.addEventListener('keyup', checkMatch);
+
+        password.addEventListener('input', checkMatch);
+        confirm.addEventListener('input', checkMatch);
     </script>
 </body>
 </html>
