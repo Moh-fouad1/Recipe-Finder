@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Edit Recipe</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="recipes.html">Recipes</a>
+<a href="favorites.html">Favorites</a>
+
+<a href="admin_manage_recipes.html">Manage Recipes</a>
+<a href="admin_add_recipe.html">Add Recipe</a>
+
+<a href="login.html">Login</a>
+<a href="signup.html">Signup</a>
+</nav>
+
+<h1>Edit Recipe</h1>
+
+<form>
+
+<label>Recipe ID</label>
+<input type="number" value="1" required>
+
+<label>Recipe Name</label>
+<input type="text" value="Chicken Alfredo Pasta" required>
+
+<label>Course</label>
+<select required>
+<option>Main Course</option>
+<option>Appetizers</option>
+<option>Dessert</option>
+</select>
+
+<h3>Ingredients</h3>
+
+<input type="number" value="1" placeholder="Ingredient ID">
+<input type="text" value="Chicken" placeholder="Ingredient Name">
+<input type="number" value="200" placeholder="Quantity">
+
+<input type="number" value="2" placeholder="Ingredient ID">
+<input type="text" value="Pasta" placeholder="Ingredient Name">
+<input type="number" value="300" placeholder="Quantity">
+
+<label>Description</label>
+<textarea required>Delicious creamy chicken pasta recipe.</textarea>
+
+<br><br>
+
+<button type="submit">Save Changes</button>
+
+</form>
+
+</body>
+</html>
