@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('username', username);
                 localStorage.setItem('accountType', validUser.accountType);
                 alert(`Login successful! Welcome back, ${validUser.firstname}!`);
-                window.location.href = 'index.html';
+                window.location.href = 'home.html';
             } else {
                 if (errorDiv) errorDiv.textContent = 'Invalid username or password.';
             }
