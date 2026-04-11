@@ -4,100 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f9f9f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .signup-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 500px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #2c3e50;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="email"],
-        input[type="tel"],
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        select:focus {
-            outline: none;
-            border-color: #e67e22;
-        }
-
-        button {
-            width: 100%;
-            background-color: #e67e22;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #d35400;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .checkbox-group label {
-            margin-bottom: 0;
-        }
-
-        #error-message {
-            color: red;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="signup.css">
 </head>
 <body>
     <div class="signup-container">
@@ -160,26 +67,23 @@
                 <button type="submit">Sign Up</button>
             </div>
         </form>
-    </div>
-
-    <script>
-        const password = document.getElementById('password');
-        const confirm = document.getElementById('confirm_password');
-        const matchCheckbox = document.getElementById('checkpasswordmatch');
-
-        function checkMatch() {
-            if (password.value !== confirm.value) {
-                confirm.setCustomValidity('Passwords do not match');
-                if (matchCheckbox.checked) {
-                    console.log('Passwords do not match');
+        <div class="nav-link">
+            <style>
+                .nav-link {
+                    margin-top: 15px;
+                    font-size: 0.9em;
                 }
-            } else {
-                confirm.setCustomValidity('');
-            }
-        }
-
-        password.addEventListener('input', checkMatch);
-        confirm.addEventListener('input', checkMatch);
-    </script>
+                .nav-link a {
+                    color: #e67e22;
+                    text-decoration: none;
+                }
+                .nav-link a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            Already have an account? <a href="login.html">Login here</a>
+        </div>
+    </div>
+    <script src="signup.js"></script>
 </body>
 </html>

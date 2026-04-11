@@ -4,84 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f9f9f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .login-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #2c3e50;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            border-color: #e67e22;
-        }
-
-        button {
-            width: 100%;
-            background-color: #e67e22;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #d35400;
-        }
-
-        #error-message {
-            color: red;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <div class="login-container">
@@ -101,14 +24,23 @@
 
             <button type="submit">Login</button>
         </form>
+        <div class="nav-link">
+            <style>
+                .nav-link {
+                    margin-top: 15px;
+                    font-size: 0.9em;
+                }
+                .nav-link a {
+                    color: #e67e22;
+                    text-decoration: none;
+                }
+                .nav-link a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            Don't have an account? <a href="signup.html">Sign up here</a>
+        </div>
     </div>
-
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const errorMessage = urlParams.get('error');
-        if (errorMessage) {
-            document.getElementById('error-message').textContent = errorMessage;
-        }
-    </script>
+    <script src="login.js"></script>
 </body>
 </html>
