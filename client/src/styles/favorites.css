@@ -8,7 +8,7 @@ body {
 }
 
 hr {
-    display: none; /* Removing the default line for a cleaner look */
+    display: none;
 }
 
 h2 {
@@ -64,7 +64,7 @@ li a:hover {
 .heart-btn {
     background: none;
     border: none;
-    color: #e67e22; /* Matches your theme orange */
+    color: #e67e22;
     font-size: 1.2rem;
     cursor: pointer;
     margin-left: 8px;
