@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Recipe</title>
+<link rel="stylesheet" href="admin_style.css">
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="search_results.html">Search</a>
+<a href="recipes.html">Recipes</a>
+<a href="favorites.html">Favorites</a>
+
+<a href="admin_manage_recipes.html">Manage Recipes</a>
+<a href="admin_add_recipe.html">Add Recipe</a>
+
+<a href="login.html">Login</a>
+<a href="signup.html">Signup</a>
+</nav>
+
+<h2>Add New Recipe</h2>
+
+<form>
+
+<h3>Recipe Information</h3>
+
+<label>Recipe ID:</label>
+<input type="text" name="recipe_id"><br><br>
+
+<label>Recipe Name:</label>
+<input type="text" name="recipe_name"><br><br>
+
+<label>Course:</label>
+<select name="course">
+<option>Appetizers</option>
+<option>Main course</option>
+<option>Dessert</option>
+</select>
+<br><br>
+
+<label>Description:</label><br>
+<textarea name="description" rows="4" cols="40"></textarea>
+
+<br><br>
+
+<h3>Ingredients</h3>
+
+<label>Ingredient ID:</label>
+<input type="text" name="ingredient_id"><br><br>
+
+<label>Ingredient Name:</label>
+<input type="text" name="ingredient_name"><br><br>
+
+<label>Quantity:</label>
+<input type="text" name="quantity"><br><br>
+
+<button type="submit">Add Recipe</button>
+
+</form>
+
+</body>
+</html>
