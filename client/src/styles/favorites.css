@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+nav {
+    background-color: #ffffff;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #e67e22; /* Primary Orange */
+}
+
+nav a[href="favorites.html"] {
+    color: #fff;
+    background-color: #e67e22;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+hr {
+    display: none; /* Removing the default line for a cleaner look */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 2.5rem;
+    color: #2c3e50;
+}
+
+ul {
+    list-style: none;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+li {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+li:hover {
+    transform: translateY(-3px);
+}
+
+li strong {
+    font-size: 1.2rem;
+    color: #e67e22;
+}
+
+li a {
+    text-decoration: none;
+    background-color: #e67e22;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+li a:hover {
+    background-color: #d35400;
+}
+
+.heart-btn {
+    background: none;
+    border: none;
+    color: #e67e22; /* Matches your theme orange */
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+    padding: 0;
+}
+
+.heart-btn:hover {
+    transform: scale(1.2);
+    color: #d35400;
+}
