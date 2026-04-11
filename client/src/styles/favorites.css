@@ -18,14 +18,14 @@ h2 {
     color: #2c3e50;
 }
 
-ul {
+#favoritesList {
     list-style: none;
     max-width: 800px;
     margin: 30px auto;
     padding: 0 20px;
 }
 
-li {
+#favoritesList li {
     background: #fff;
     margin-bottom: 20px;
     padding: 20px;
@@ -37,16 +37,16 @@ li {
     transition: transform 0.2s ease;
 }
 
-li:hover {
+#favoritesList li:hover {
     transform: translateY(-3px);
 }
 
-li strong {
+#favoritesList li strong {
     font-size: 1.2rem;
     color: #e67e22;
 }
 
-li a {
+#favoritesList li a {
     text-decoration: none;
     background-color: #e67e22;
     color: white;
@@ -57,7 +57,7 @@ li a {
     transition: background-color 0.3s ease;
 }
 
-li a:hover {
+#favoritesList li a:hover {
     background-color: #d35400;
 }
 
