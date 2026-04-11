@@ -3,39 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Details - Chicken Parm Pink Sauce</title>
+    <link rel="stylesheet" href="/client/src/styles/recipes.css">
 </head>
 <body>
-    <h1>Recipe Name: Chicken Parm with Pink Sauce Pasta</h1>
-    <p><b>Recipe ID:</b> 2</p>
-    <p><b>Course:</b> Main Course</p>
-
-    <h3>Ingredients</h3>
-    <table border="1">
-        <tr>
-            <th>Ingredient ID</th>
-            <th>Name</th>
-            <th>Quantity</th>
-        </tr>
-        <tr>
-            <td>201</td>
-            <td>Penne Pasta</td>
-            <td>250g</td>
-        </tr>
-        <tr>
-            <td>202</td>
-            <td>Breaded Chicken</td>
-            <td>150g</td>
-        </tr>
-        <tr>
-            <td>203</td>
-            <td>Tomato & Cream Mix</td>
-            <td>1.5 cups</td>
-        </tr>
-    </table>
-
-    <h3>Description</h3>
-    <p>Fry the breaded chicken until golden. Mix marinara sauce with heavy cream to create a pink sauce. Toss with cooked penne and top with melted cheese.</p>
-
-    <button type="button">Add to Favorites</button>
+    <nav class="navbar">
+        <div class="logo">Recipe<span>Finder</span></div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="search_results.html">Search</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+        </ul>
+        <hr>    
+    </nav>
+    <div class="container">
+        <div class="recipe-card">
+        <h1>Crispy Vegetable Spring Rolls</h1>
+        <p><b>Recipe ID:</b> 4 | <b>Course:</b> Appetizers</p>
+        <h3>Ingredients</h3>
+        <table border="1" class="recipe-table">
+            <tr><th>ID</th><th>Name</th><th>Quantity</th></tr>
+            <tr><td>401</td><td>Spring Roll Wrappers</td><td>5 sheets</td></tr>
+            <tr><td>402</td><td>Shredded Cabbage</td><td>1 cup</td></tr>
+            <tr><td>403</td><td>Carrots</td><td>1 medium</td></tr>
+        </table>
+        <h3>Description</h3>
+        <p>Stir-fry shredded vegetables with soy sauce. Place filling on wrappers, roll tightly, and deep fry until crispy and golden brown.</p>
+        <button class="btn-signup" onclick="addToFavorites('4')">Add to Favorites</button>
+    </div>
+    </div>
+    <script src="/client/src/scripts/recipes.js"></script>
 </body>
 </html>
