@@ -1,65 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Add Recipe</title>
-<link rel="stylesheet" href="../../src/styles/admin_style.css">
-    <link rel="stylesheet" href="../../src/styles/nav-bar.css">
+    <title>Add Recipe</title>
+    <link rel="stylesheet" href="admin_style.css">
 </head>
-
 <body>
 
-<nav class="navbar">
-        <div class="logo">Recipe<span>Finder</span></div>
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="recipes.html">Browse</a></li>
-            <li><a href="search_results.html">Search</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
-        </ul>
-    </nav>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="recipes.html">Recipes</a>
+    <a href="favorites.html">Favorites</a>
+    <a href="admin_manage_recipes.html">Manage Recipes</a>
+    <a href="admin_add_recipe.html">Add Recipe</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Signup</a>
+</nav>
 
 <h2>Add New Recipe</h2>
 
-<form>
+<form id="recipeForm">
+    <h3>Recipe Information</h3>
+    <label>Recipe ID:</label>
+    <input type="text" name="recipe_id" placeholder="Auto-generated if empty"><br><br>
 
-<h3>Recipe Information</h3>
+    <label>Recipe Name:</label>
+    <input type="text" name="recipe_name" required><br><br>
 
-<label>Recipe ID:</label>
-<input type="text" name="recipe_id"><br><br>
+    <label>Course:</label>
+    <select name="course">
+        <option>Appetizers</option>
+        <option>Main course</option>
+        <option>Dessert</option>
+    </select><br><br>
 
-<label>Recipe Name:</label>
-<input type="text" name="recipe_name"><br><br>
+    <label>Description:</label><br>
+    <textarea name="description" rows="4" cols="40"></textarea><br><br>
 
-<label>Course:</label>
-<select name="course">
-<option>Appetizers</option>
-<option>Main course</option>
-<option>Dessert</option>
-</select>
-<br><br>
+    <h3>Ingredients</h3>
+    <div id="ingredientsContainer">
+      
+        <div class="ingredient-group">
+            <label>Ingredient ID:</label>
+            <input type="text" name="ingredient_id[]" placeholder="e.g., ING001">
 
-<label>Description:</label><br>
-<textarea name="description" rows="4" cols="40"></textarea>
+            <label>Ingredient Name:</label>
+            <input type="text" name="ingredient_name[]" placeholder="e.g., Flour" required>
 
-<br><br>
+            <label>Quantity:</label>
+            <input type="text" name="quantity[]" placeholder="e.g., 2 cups" required>
 
-<h3>Ingredients</h3>
+            <button type="button" class="remove-ingredient" style="background:#e74c3c; width:auto; padding:5px 10px;">Remove</button>
+            <hr>
+        </div>
+    </div>
 
-<label>Ingredient ID:</label>
-<input type="text" name="ingredient_id"><br><br>
-
-<label>Ingredient Name:</label>
-<input type="text" name="ingredient_name"><br><br>
-
-<label>Quantity:</label>
-<input type="text" name="quantity"><br><br>
-
-<button type="submit">Add Recipe</button>
-
+    <button type="button" id="addIngredientBtn" style="background:#2c3e50; margin-bottom:20px;">+ Add Another Ingredient</button>
+    <br>
+    <button type="submit">Add Recipe</button>
 </form>
 
-<script src="../../src/scripts/nav-bar.js"></script>
-
+<script src="admin_add_recipe.js"></script>
 </body>
 </html>
