@@ -3,22 +3,21 @@
 <head>
 <title>Add Recipe</title>
 <link rel="stylesheet" href="../../src/styles/admin_style.css">
+<link rel="stylesheet" href="../../src/styles/nav-bar.css">
 </head>
 
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="search_results.html">Search</a>
-<a href="recipes.html">Recipes</a>
-<a href="favorites.html">Favorites</a>
-
-<a href="admin_manage_recipes.html">Manage Recipes</a>
-<a href="admin_add_recipe.html">Add Recipe</a>
-
-<a href="login.html">Login</a>
-<a href="signup.html">Signup</a>
-</nav>
+<nav class="navbar">
+        <div class="logo">Recipe<span>Finder</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="recipes.html">Browse</a></li>
+            <li><a href="search_results.html">Search</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+    </nav>
 
 <h2>Add New Recipe</h2>
 
@@ -59,6 +58,8 @@
 <button type="submit">Add Recipe</button>
 
 </form>
+
+<script src="../../src/scripts/nav-bar.js"></script>
 
 </body>
 </html>
