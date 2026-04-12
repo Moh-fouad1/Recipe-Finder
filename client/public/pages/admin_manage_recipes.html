@@ -1,131 +1,48 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin - Manage Recipes</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="../../src/styles/nav-bar.css">
+<link rel="stylesheet" href="../../src/styles/admin.css">
+<script src="../../src/scripts/admin.js" defer></script>
 </head>
-
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="search_results.html">Search</a>
-<a href="recipes.html">Recipes</a>
-<a href="favorites.html">Favorites</a>
-<a href="admin_manage_recipes.html">Manage Recipes</a>
-<a href="admin_add_recipe.html">Add Recipe</a>
-<a href="login.html">Login</a>
-<a href="signup.html">Signup</a>
-<hr>    
-</nav>
+    <nav class="navbar">
+        <div class="logo">Recipe<span>Finder</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="recipes.html">Browse Recipes</a></li>
+            <li><a href="search_results.html">Search</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+            <li><a href="admin_manage_recipes.html">Manage</a></li>
+            <li><a href="admin_add_recipe.html">Add</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+    </nav>
+
 
 <h1>Manage Recipes</h1>
 
-<a href="admin_add_recipe.html">
-<button>Add New Recipe</button>
-</a>
+<a href="admin_add_recipe.html" class="btn" style="margin-bottom: 1.5rem;">Add New Recipe</a>
 
-<br><br>
-
-<table border="1">
-
-<tr>
-<th>ID</th>
-<th>Recipe Name</th>
-<th>Course</th>
-<th>Actions</th>
-</tr>
-
-<tr>
-<td>1</td>
-<td>Chicken Alfredo Pasta</td>
-<td>Main Course</td>
-<td>
-<a href="recipe1.html">View</a>
-<a href="admin_edit_recipe.html">Edit</a>
-<button>Delete</button>
-</td>
-</tr>
-
-<tr>
-<td>2</td>
-<td>Chicken Parm with Pink Sauce Pasta</td>
-<td>Main Course</td>
-<td>
-<a href="recipe2.html">View</a>
-<a href="admin_edit_recipe.html">Edit</a>
-<button>Delete</button>
-</td>
-</tr>
-
-<tr>
-<td>3</td>
-<td>Chicken Shawarma</td>
-<td>Main Course</td>
-<td>
-<a href="recipe3.html">View</a>
-<a href="admin_edit_recipe.html">Edit</a>
-<button>Delete</button>
-</td>
-</tr>
-
-<tr>
-<td>4</td>
-<td>Crispy Vegetable Spring Rolls</td>
-<td>Appetizers</td>
-<td>
-<a href="recipe4.html">View</a>
-<a href="admin_edit_recipe.html">Edit</a>
-<button>Delete</button>
-</td>
-</tr>
-
-<tr>
-<td>5</td>
-<td>Spicy Buffalo Wings</td>
-<td>Appetizers</td>
-<td>
-<a href="recipe5.html">View</a>
-<a href="admin_edit_recipe.html">Edit</a>
-<button>Delete</button>
-</td>
-</tr>
-
-<tr>
-<td>6</td>
-<td>Traditional Beef Lasagna</td>
-<td>Main Course</td>
-<td>
-<a href="recipe6.html">View</a>
-<a href="admin_edit_recipe.html">Edit</a>
-<button>Delete</button>
-</td>
-</tr>
-
-<tr>
-<td>7</td>
-<td>Rich Chocolate Lava Cake</td>
-<td>Dessert</td>
-<td>
-<a href="recipe7.html">View</a>
-<a href="admin_edit_recipe.html">Edit</a>
-<button>Delete</button>
-</td>
-</tr>
-
-<tr>
-<td>8</td>
-<td>Classic New York Cheesecake</td>
-<td>Dessert</td>
-<td>
-<a href="recipe8.html">View</a>
-<a href="admin_edit_recipe.html">Edit</a>
-<button>Delete</button>
-</td>
-</tr>
-
-</table>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Recipe Name</th>
+                <th>Course</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="recipe-table-body">
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

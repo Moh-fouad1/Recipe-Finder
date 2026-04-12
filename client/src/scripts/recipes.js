@@ -13,14 +13,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (navLinks) {
         if (!isLoggedIn) {
             navLinks.innerHTML = `
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li><a href="recipes.html">Browse Recipes</a></li>
                 <li><a href="login.html">Login</a></li>
                 <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
             `;
         } else if (accountType === 'admin') {
             navLinks.innerHTML = `
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li><a href="recipes.html">Browse Recipes</a></li>
                 <li><a href="admin_manage_recipes.html">Manage Recipes</a></li>
                 <li><a href="admin_add_recipe.html">Add Recipe</a></li>
