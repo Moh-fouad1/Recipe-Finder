@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * 4. Add to Favorites Logic
      * Saves the recipe ID to an array in localStorage
      */
-    window.addToFavorites = function (recipeId, event) {
+    window.addToFavorites = function (recipeId,name, link, event) {
         if (!isLoggedIn) {
             alert("You must be logged in to save favorites!");
             window.location.href = 'login.html';
@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Get existing favorites or initialize empty array
         let favorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
 
-        if (!favorites.includes(recipeId)) {
-            favorites.push(recipeId);
+        if (!favorites.find(r => r.id === recipeId)) {
+            favorites.push({id: recipeId, name: name, link, link});
             localStorage.setItem('userFavorites', JSON.stringify(favorites));
             alert("Recipe added to your favorites!");
             

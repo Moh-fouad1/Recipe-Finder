@@ -40,13 +40,7 @@ function addToFavorites(id) {
 
 async function displayFavorites() {
     const favoritesList = document.querySelector('#favoritesList');
-    if (!favoritesList) return;
-
-    const allRecipes = await getRecipesFromHTML();
-    
-    const favoriteIds = JSON.parse(localStorage.getItem('userFavorites')) || [];
-    
-    const myFavorites = allRecipes.filter(recipe => favoriteIds.includes(recipe.id));
+    const myFavorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
 
     if (myFavorites.length === 0) {
         favoritesList.innerHTML = "<li>No favorites added yet.</li>";
