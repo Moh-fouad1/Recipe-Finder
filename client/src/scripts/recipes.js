@@ -52,27 +52,33 @@ document.addEventListener('DOMContentLoaded', function () {
      * 4. Add to Favorites Logic
      * Saves the recipe ID to an array in localStorage
      */
-    window.addToFavorites = function (recipeId,name, link, event) {
-        if (!isLoggedIn) {
-            alert("You must be logged in to save favorites!");
-            window.location.href = 'login.html';
-            return;
-        }
+    window.addToFavorites = function (recipeId, name, link, event) {
+    if (!isLoggedIn) {
+        alert("You must be logged in to save favorites!");
+        window.location.href = 'login.html';
+        return;
+    }
 
-        // Get existing favorites or initialize empty array
-        let favorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
+    let favorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
+    const existingIndex = favorites.findIndex(r => r.id === recipeId);
 
-        if (!favorites.find(r => r.id === recipeId)) {
-            favorites.push({id: recipeId, name: name, link, link});
-            localStorage.setItem('userFavorites', JSON.stringify(favorites));
-            alert("Recipe added to your favorites!");
-            
-            // Toggle visual state of the heart button if it exists
-            if (event && event.target) {
-                event.target.classList.add('active');
-            }
-        } else {
-            alert("This recipe is already in your favorites.");
+    if (existingIndex === -1) {
+        // Add to favorites
+        favorites.push({ id: recipeId, name: name, link: link });
+        localStorage.setItem('userFavorites', JSON.stringify(favorites));
+        
+        if (event && event.target) {
+            event.target.classList.add('active');
         }
-    };
-});
+        alert("Recipe added to your favorites!");
+    } else {
+        // Remove from favorites (Toggle off)
+        favorites.splice(existingIndex, 1);
+        localStorage.setItem('userFavorites', JSON.stringify(favorites));
+        
+        if (event && event.target) {
+            event.target.classList.remove('active');
+        }
+        alert("Recipe removed from favorites.");
+    }
+};
