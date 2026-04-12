@@ -52,33 +52,19 @@ document.addEventListener('DOMContentLoaded', function () {
      * 4. Add to Favorites Logic
      * Saves the recipe ID to an array in localStorage
      */
-    window.addToFavorites = function (recipeId, name, link, event) {
+window.addToFavorites = function (recipeId, name, link, event) {
     if (!isLoggedIn) {
-        alert("You must be logged in to save favorites!");
-        window.location.href = 'login.html';
+        alert("You must be logged in!");
         return;
     }
 
     let favorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
-    const existingIndex = favorites.findIndex(r => r.id === recipeId);
 
-    if (existingIndex === -1) {
-        // Add to favorites
-        favorites.push({ id: recipeId, name: name, link: link });
+    // Check if already exists
+    if (!favorites.find(r => r.id === recipeId)) {
+        favorites.push({ id: recipeId, name: name, link: link }); // Save object
         localStorage.setItem('userFavorites', JSON.stringify(favorites));
-        
-        if (event && event.target) {
-            event.target.classList.add('active');
-        }
-        alert("Recipe added to your favorites!");
-    } else {
-        // Remove from favorites (Toggle off)
-        favorites.splice(existingIndex, 1);
-        localStorage.setItem('userFavorites', JSON.stringify(favorites));
-        
-        if (event && event.target) {
-            event.target.classList.remove('active');
-        }
-        alert("Recipe removed from favorites.");
+        alert("Recipe added!");
     }
 };
+});
