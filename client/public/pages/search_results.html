@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
     <link rel="stylesheet" href="../../src/styles/nav-bar.css">
+    <link rel="stylesheet" href="../../src/styles/search_results.css">
 </head>
 <body>
 
@@ -25,11 +26,6 @@
         <label for="dish_name">Search by dish name:</label>
         <input type="text" id="dish_name" name="dish_name" placeholder="e.g., Pasta">
         <br><br>
-
-        <label for="ingredient">Search by ingredient:</label>
-        <input type="text" id="ingredient" name="ingredient" placeholder="e.g., Rice">
-        <br><br>
-
         <button type="submit">Search</button>
 
     </form>
@@ -37,9 +33,9 @@
     <hr>
 
     <h3>Search Results:</h3>
-    <p><em>Your search results will appear here...</em></p>
+    <p id="results-area"><em>Your search results will appear here...</em></p>
 
     <script src="../../src/scripts/nav-bar.js"></script>
-
+    <script src="../../src/scripts/search_results.js"></script>
 </body>
 </html>
