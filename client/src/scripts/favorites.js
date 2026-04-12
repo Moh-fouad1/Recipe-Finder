@@ -1,6 +1,6 @@
 async function getRecipesFromHTML() {
     try {
-        const response = await fetch('recipes.html');
+        const response = await fetch('../../public/pages/recipes.html');
         const htmlString = await response.text();
         
         const parser = new DOMParser();
@@ -13,7 +13,7 @@ async function getRecipesFromHTML() {
         if (cells.length < 4) return null; 
     
         return {
-            id: cells[0].innerText.replace(/\s/g, ''), // Removes all spaces/newlines
+            id: cells[0].innerText.trim(),
             name: cells[1].innerText.trim(),
             course: cells[2].innerText.trim(),
             link: cells[3].querySelector('a')?.getAttribute('href') || '#'

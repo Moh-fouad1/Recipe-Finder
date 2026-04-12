@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Get existing favorites or initialize empty array
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let favorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
 
         if (!favorites.includes(recipeId)) {
             favorites.push(recipeId);
-            localStorage.setItem('favorites', JSON.stringify(favorites));
+            localStorage.setItem('userFavorites', JSON.stringify(favorites));
             alert("Recipe added to your favorites!");
             
             // Toggle visual state of the heart button if it exists
