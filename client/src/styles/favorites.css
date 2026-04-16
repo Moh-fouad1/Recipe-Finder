@@ -76,3 +76,26 @@ h2 {
     transform: scale(1.2);
     color: #d35400;
 }
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.remove-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: inherit; /* matches the rest of your font */
+}
+
+.remove-btn:hover {
+    background-color: #c0392b;
+}

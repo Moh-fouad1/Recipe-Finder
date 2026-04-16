@@ -29,13 +29,21 @@ async function getRecipesFromHTML() {
 
 function addToFavorites(id) {
     let favorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
-    if (!favorites.includes(id)) {
+
+    if (!favorites.some(fav => fav.id === recipe.id)) {
         favorites.push(id);
         localStorage.setItem('userFavorites', JSON.stringify(favorites));
         alert("Added to favorites!");
     } else {
         alert("Already in favorites!");
     }
+}
+
+function removeFromFavorites(id) {
+    let favorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
+    favorites = favorites.filter(recipe => recipe.id !== id);
+    localStorage.setItem('userFavorites', JSON.stringify(favorites));
+    displayFavorites(); // Refresh the UI
 }
 
 async function displayFavorites() {
@@ -47,10 +55,16 @@ async function displayFavorites() {
         return;
     }
 
+    // Per your requirements: Link is only on "View Details", not the name
     favoritesList.innerHTML = myFavorites.map(recipe => `
         <li>
-            <strong>Saved Recipe:</strong> ${recipe.name}
-            <a href="${recipe.link}">View Recipe Details</a>
+            <div>
+                <strong>Saved Recipe:</strong> ${recipe.name}
+            </div>
+            <div class="action-buttons">
+                <a href="${recipe.link}" class="view-btn">View Details</a>
+                <button class="remove-btn" onclick="removeFromFavorites('${recipe.id}')">Remove</button>
+            </div>
         </li>
     `).join('');
 }
