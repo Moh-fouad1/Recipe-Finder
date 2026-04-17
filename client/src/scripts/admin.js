@@ -92,7 +92,7 @@ function loadRecipeForEdit() {
         document.getElementById('recipe-desc').value = recipe.description;
         
         const ingredientsContainer = document.getElementById('ingredients-container');
-        ingredientsContainer.innerHTML = ''; // clear initial
+        ingredientsContainer.innerHTML = '';
 
         if (recipe.ingredients && recipe.ingredients.length > 0) {
             recipe.ingredients.forEach(ing => {
@@ -134,7 +134,7 @@ function saveEditedRecipe() {
     const index = recipes.findIndex(r => r.id === targetId);
 
     if (index !== -1) {
-        // Build new ingredient object list
+        // add new ingredient 
         const ingRows = document.querySelectorAll('.ingredient-row');
         let newIngredients = [];
         ingRows.forEach(row => {
@@ -162,7 +162,6 @@ function saveEditedRecipe() {
     }
 }
 
-// Bootstrap initialization based on the page
 document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById('edit-recipe-form')) {
         loadRecipeForEdit();
