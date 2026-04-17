@@ -1,16 +1,14 @@
-// Mock LocalStorage Data
 const initialRecipes = [
-    { id: 1, name: "Chicken Alfredo Pasta", course: "Main Course", description: "Delicious creamy chicken pasta recipe.", ingredients: [{ id: 1, name: "Chicken", qty: 200 }, { id: 2, name: "Pasta", qty: 300 }] },
-    { id: 2, name: "Chicken Parm with Pink Sauce Pasta", course: "Main Course", description: "Classic chicken parm.", ingredients: [] },
-    { id: 3, name: "Chicken Shawarma", course: "Main Course", description: " Authentic spices.", ingredients: [] },
-    { id: 4, name: "Crispy Vegetable Spring Rolls", course: "Appetizers", description: "Crispy and light.", ingredients: [] },
-    { id: 5, name: "Spicy Buffalo Wings", course: "Appetizers", description: "Hot and spicy.", ingredients: [] },
-    { id: 6, name: "Traditional Beef Lasagna", course: "Main Course", description: "Layers of goodness.", ingredients: [] },
-    { id: 7, name: "Rich Chocolate Lava Cake", course: "Dessert", description: "Melts in your mouth.", ingredients: [] },
-    { id: 8, name: "Classic New York Cheesecake", course: "Dessert", description: "Creamy and rich.", ingredients: [] }
+    { id: 1, name: "Chicken Alfredo Pasta", course: "Main Course",description: "Delicious creamy chicken pasta recipe.", ingredients: [{ id: 1, name: "Chicken", qty: 200 }, { id: 2, name: "Pasta", qty: 300 }] },
+    { id: 2, name: "Chicken Parm with Pink Sauce Pasta", course: "Main Course",description: "Classic chicken parm.", ingredients: [] },
+    { id: 3, name: "Chicken Shawarma", course: "Main Course", description: " Authentic spices.",ingredients: []},
+    { id: 4, name: "Crispy Vegetable Spring Rolls", course: "Appetizers", description: "Crispy and light.",ingredients: [] },
+    { id: 5, name: "Spicy Buffalo Wings",course: "Appetizers",description: "Hot and spicy.", ingredients: [] },
+    { id: 6, name: "Traditional Beef Lasagna",course: "Main Course", description: "Layers of goodness.", ingredients: [] },
+    { id: 7, name: "Rich Chocolate Lava Cake", course: "Dessert",description: "Melts in your mouth.",ingredients: [] },
+    { id: 8, name: "Classic New York Cheesecake",course: "Dessert", description: "Creamy and rich.", ingredients: [] }
 ];
 
-// Initialize DB if not present
 if (!localStorage.getItem('admin_recipes')) {
     localStorage.setItem('admin_recipes', JSON.stringify(initialRecipes));
 }
@@ -51,7 +49,7 @@ function deleteRecipe(id) {
         let recipes = getRecipes();
         recipes = recipes.filter(r => r.id !== id);
         saveRecipesToDB(recipes);
-        loadRecipes(); // re-render
+        loadRecipes();
     }
 }
 
