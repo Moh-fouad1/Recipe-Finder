@@ -1,4 +1,3 @@
-// ---------- Helper Functions ----------
 
 // Load recipes from localStorage
 function getRecipes() {
@@ -10,7 +9,7 @@ function saveRecipes(recipes) {
   localStorage.setItem('recipes', JSON.stringify(recipes));
 }
 
-// ---------- Manage Recipes Page ----------
+//  Manage Recipes Page
 
 function loadManageTable() {
   const tbody = document.getElementById('recipe-table-body');
@@ -41,7 +40,7 @@ window.deleteRecipe = function(id) {
   loadManageTable(); // Refresh the table
 };
 
-// ---------- Edit Recipe Page ----------
+// Edit Recipe Page
 
 // Add an ingredient row to the container
 window.addIngredientRow = function(container, id = '', name = '', quantity = '') {
@@ -128,7 +127,7 @@ function setupEditForm() {
   });
 }
 
-// ---------- Initialise Based on Page ----------
+// Initialise Based on Page 
 
 document.addEventListener('DOMContentLoaded', () => {
   // Manage page
