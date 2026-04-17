@@ -1,175 +1,142 @@
-// Mock LocalStorage Data
-const initialRecipes = [
-    { id: 1, name: "Chicken Alfredo Pasta", course: "Main Course", description: "Delicious creamy chicken pasta recipe.", ingredients: [{ id: 1, name: "Chicken", qty: 200 }, { id: 2, name: "Pasta", qty: 300 }] },
-    { id: 2, name: "Chicken Parm with Pink Sauce Pasta", course: "Main Course", description: "Classic chicken parm.", ingredients: [] },
-    { id: 3, name: "Chicken Shawarma", course: "Main Course", description: " Authentic spices.", ingredients: [] },
-    { id: 4, name: "Crispy Vegetable Spring Rolls", course: "Appetizers", description: "Crispy and light.", ingredients: [] },
-    { id: 5, name: "Spicy Buffalo Wings", course: "Appetizers", description: "Hot and spicy.", ingredients: [] },
-    { id: 6, name: "Traditional Beef Lasagna", course: "Main Course", description: "Layers of goodness.", ingredients: [] },
-    { id: 7, name: "Rich Chocolate Lava Cake", course: "Dessert", description: "Melts in your mouth.", ingredients: [] },
-    { id: 8, name: "Classic New York Cheesecake", course: "Dessert", description: "Creamy and rich.", ingredients: [] }
-];
+// ---------- Helper Functions ----------
 
-// Initialize DB if not present
-if (!localStorage.getItem('admin_recipes')) {
-    localStorage.setItem('admin_recipes', JSON.stringify(initialRecipes));
-}
-
+// Load recipes from localStorage
 function getRecipes() {
-    return JSON.parse(localStorage.getItem('admin_recipes')) || [];
+  return JSON.parse(localStorage.getItem('recipes')) || [];
 }
 
-function saveRecipesToDB(recipes) {
-    localStorage.setItem('admin_recipes', JSON.stringify(recipes));
+// Save recipes to localStorage
+function saveRecipes(recipes) {
+  localStorage.setItem('recipes', JSON.stringify(recipes));
 }
 
-function loadRecipes() {
-    const tableBody = document.getElementById('recipe-table-body');
-    if (!tableBody) return;
+// ---------- Manage Recipes Page ----------
 
-    const recipes = getRecipes();
-    tableBody.innerHTML = '';
+function loadManageTable() {
+  const tbody = document.getElementById('recipe-table-body');
+  if (!tbody) return; // Not on manage page
 
-    recipes.forEach(recipe => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${recipe.id}</td>
-            <td>${recipe.name}</td>
-            <td>${recipe.course}</td>
-            <td>
-                <a href="recipe${recipe.id}.html">View</a>
-                <a href="admin_edit_recipe.html?id=${recipe.id}" class="btn btn-sm">Edit</a>
-                <button class="btn btn-sm btn-danger" onclick="deleteRecipe(${recipe.id})">Delete</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
+  const recipes = getRecipes();
+
+  tbody.innerHTML = recipes.map(recipe => `
+    <tr>
+      <td>${recipe.id}</td>
+      <td>${recipe.name}</td>
+      <td>${recipe.course}</td>
+      <td>
+        <a href="admin_edit_recipe.html?id=${recipe.id}" class="btn btn-sm">Edit</a>
+        <button class="btn btn-sm btn-danger" onclick="deleteRecipe('${recipe.id}')">Delete</button>
+      </td>
+    </tr>
+  `).join('');
 }
 
-function deleteRecipe(id) {
-    if (confirm("Are you sure you want to delete recipe " + id + "?")) {
-        let recipes = getRecipes();
-        recipes = recipes.filter(r => r.id !== id);
-        saveRecipesToDB(recipes);
-        loadRecipes(); // re-render
-    }
-}
+// Global delete function called from onclick
+window.deleteRecipe = function(id) {
+  if (!confirm('Are you sure you want to delete this recipe?')) return;
 
+  let recipes = getRecipes();
+  recipes = recipes.filter(r => r.id !== id);
+  saveRecipes(recipes);
+  loadManageTable(); // Refresh the table
+};
 
-function validateEditForm() {
+// ---------- Edit Recipe Page ----------
 
-    const nameInput = document.getElementById('recipe-name');
-    const descInput = document.getElementById('recipe-desc');
-    let isValid = true;
-    
-    if (nameInput.value.trim().length < 3) {
-        alert("Recipe name must be at least 3 characters long.");
-        isValid = false;
-    }
-    
-    if (descInput.value.trim().length < 10) {
-        alert("Description must be at least 10 characters long.");
-        isValid = false;
-    }
-
-    return isValid;
-}
+// Add an ingredient row to the container
+window.addIngredientRow = function(container, id = '', name = '', quantity = '') {
+  const row = document.createElement('div');
+  row.className = 'ingredient-row';
+  row.innerHTML = `
+    <input type="text" placeholder="Ingredient ID (optional)" value="${id}" class="ing-id" style="flex:1;">
+    <input type="text" placeholder="Name" value="${name}" required class="ing-name" style="flex:2;">
+    <input type="text" placeholder="Quantity" value="${quantity}" required class="ing-qty" style="flex:2;">
+    <button type="button" class="btn btn-sm btn-danger" onclick="this.closest('.ingredient-row').remove()">Remove</button>
+  `;
+  container.appendChild(row);
+};
 
 function loadRecipeForEdit() {
-    const form = document.getElementById('edit-recipe-form');
-    if (!form) return;
+  const urlParams = new URLSearchParams(window.location.search);
+  const recipeId = urlParams.get('id');
+  if (!recipeId) return;
 
-    const params = new URLSearchParams(window.location.search);
-    const idParam = params.get('id');
-    
-    const targetId = idParam ? parseInt(idParam) : 1; 
+  const recipes = getRecipes();
+  const recipe = recipes.find(r => r.id === recipeId);
+  if (!recipe) {
+    alert('Recipe not found.');
+    window.location.href = 'admin_manage_recipes.html';
+    return;
+  }
 
-    const recipes = getRecipes();
-    const recipe = recipes.find(r => r.id === targetId);
+  document.getElementById('recipe-id').value = recipe.id;
+  document.getElementById('recipe-name').value = recipe.name;
+  document.getElementById('recipe-course').value = recipe.course;
+  document.getElementById('recipe-desc').value = recipe.description;
 
-    if (recipe) {
-        document.getElementById('recipe-id').value = recipe.id;
-        document.getElementById('recipe-name').value = recipe.name;
-        document.getElementById('recipe-course').value = recipe.course;
-        document.getElementById('recipe-desc').value = recipe.description;
-        
-        const ingredientsContainer = document.getElementById('ingredients-container');
-        ingredientsContainer.innerHTML = ''; // clear initial
+  const container = document.getElementById('ingredients-container');
+  container.innerHTML = '';
+  recipe.ingredients.forEach(ing => {
+    addIngredientRow(container, ing.id || '', ing.name, ing.quantity);
+  });
+}
 
-        if (recipe.ingredients && recipe.ingredients.length > 0) {
-            recipe.ingredients.forEach(ing => {
-                addIngredientRow(ingredientsContainer, ing.id, ing.name, ing.qty);
-            });
-        } else {
-            addIngredientRow(ingredientsContainer, '', '', '');
-        }
-    } else {
-        alert("Recipe not found!");
-    }
+function setupEditForm() {
+  const form = document.getElementById('edit-recipe-form');
+  if (!form) return;
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (validateEditForm()) {
-            saveEditedRecipe();
-        }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById('recipe-id').value;
+    const name = document.getElementById('recipe-name').value.trim();
+    const course = document.getElementById('recipe-course').value;
+    const description = document.getElementById('recipe-desc').value.trim();
+
+    // Gather ingredients
+    const ingredientRows = document.querySelectorAll('#ingredients-container .ingredient-row');
+    const ingredients = [];
+    ingredientRows.forEach(row => {
+      const ingId = row.querySelector('.ing-id').value.trim();
+      const ingName = row.querySelector('.ing-name').value.trim();
+      const ingQty = row.querySelector('.ing-qty').value.trim();
+      if (ingName && ingQty) {
+        ingredients.push({ id: ingId || null, name: ingName, quantity: ingQty });
+      }
     });
 
-}
+    if (!name) {
+      alert('Recipe name is required.');
+      return;
+    }
+    if (ingredients.length === 0) {
+      alert('At least one ingredient is required.');
+      return;
+    }
 
-function addIngredientRow(container, idVal, nameVal, qtyVal) {
-    const div = document.createElement('div');
-    div.className = 'ingredient-row';
-    div.innerHTML = `
-        <input type="number" class="ing-id" value="${idVal}" placeholder="Ing ID" style="width:20%">
-        <input type="text" class="ing-name" value="${nameVal}" placeholder="Ingredient Name" style="width:50%">
-        <input type="number" class="ing-qty" value="${qtyVal}" placeholder="Qty" style="width:30%">
-    `;
-    container.appendChild(div);
-}
-
-function saveEditedRecipe() {
-    const idStr = document.getElementById('recipe-id').value;
-    const targetId = parseInt(idStr);
-
+    // Update the recipe in the array
     let recipes = getRecipes();
-    const index = recipes.findIndex(r => r.id === targetId);
-
+    const index = recipes.findIndex(r => r.id === id);
     if (index !== -1) {
-        // Build new ingredient object list
-        const ingRows = document.querySelectorAll('.ingredient-row');
-        let newIngredients = [];
-        ingRows.forEach(row => {
-            const iId = row.querySelector('.ing-id').value;
-            const iName = row.querySelector('.ing-name').value;
-            const iQty = row.querySelector('.ing-qty').value;
-            if(iName) {
-                newIngredients.push({ id: iId, name: iName, qty: iQty });
-            }
-        });
-
-        recipes[index] = {
-            id: targetId,
-            name: document.getElementById('recipe-name').value,
-            course: document.getElementById('recipe-course').value,
-            description: document.getElementById('recipe-desc').value,
-            ingredients: newIngredients
-        };
-
-        saveRecipesToDB(recipes);
-        alert('Recipe ' + targetId + ' updated successfully!');
-        window.location.href = 'admin_manage_recipes.html';
+      recipes[index] = { id, name, course, description, ingredients };
+      saveRecipes(recipes);
+      alert('Recipe updated successfully!');
+      window.location.href = 'admin_manage_recipes.html';
     } else {
-        alert('Could not update because recipe ID was not found.');
+      alert('Error: Recipe not found.');
     }
+  });
 }
 
-// Bootstrap initialization based on the page
-document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById('edit-recipe-form')) {
-        loadRecipeForEdit();
-    }
-    if (document.getElementById('recipe-table-body')) {
-        loadRecipes();
-    }
+// ---------- Initialise Based on Page ----------
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Manage page
+  loadManageTable();
+
+  // Edit page
+  if (document.getElementById('edit-recipe-form')) {
+    loadRecipeForEdit();
+    setupEditForm();
+  }
 });

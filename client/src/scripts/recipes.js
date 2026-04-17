@@ -1,70 +1,70 @@
-/**
- * Recipe Finder - Shared Frontend Logic
- * Handles Dynamic Navigation and Favorites System
- */
+// Helper: get recipes from localStorage
+function getRecipes() {
+  return JSON.parse(localStorage.getItem('recipes')) || [];
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    // 1. Check Login Status from localStorage
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const accountType = localStorage.getItem('accountType'); // 'admin' or 'user'
-    const navLinks = document.getElementById('nav-links');
+// Helper: get favourites from localStorage
+function getFavorites() {
+  return JSON.parse(localStorage.getItem('userFavorites')) || [];
+}
 
-    // 2. Dynamic Navbar Structure (Matches home.js logic)
-    if (navLinks) {
-        if (!isLoggedIn) {
-            navLinks.innerHTML = `
-                <li><a href="home.html">Home</a></li>
-                <li><a href="recipes.html">Browse Recipes</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
-            `;
-        } else if (accountType === 'admin') {
-            navLinks.innerHTML = `
-                <li><a href="home.html">Home</a></li>
-                <li><a href="recipes.html">Browse Recipes</a></li>
-                <li><a href="admin_manage_recipes.html">Manage Recipes</a></li>
-                <li><a href="admin_add_recipe.html">Add Recipe</a></li>
-                <li><a href="#" class="btn-signup" id="logout-btn">Logout</a></li>
-            `;
-        } else {
-            navLinks.innerHTML = `
-                <li><a href="index.html">Home</a></li>
-                <li><a href="recipes.html">Browse Recipes</a></li>
-                <li><a href="favorites.html">Favorites</a></li>
-                <li><a href="#" class="btn-signup" id="logout-btn">Logout</a></li>
-            `;
-        }
-    }
+// Helper: save favourites to localStorage
+function saveFavorites(favorites) {
+  localStorage.setItem('userFavorites', JSON.stringify(favorites));
+}
 
-    // 3. Handle Logout Action
-    document.addEventListener('click', function (e) {
-        if (e.target && e.target.id === 'logout-btn') {
-            e.preventDefault();
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('username');
-            localStorage.removeItem('accountType');
-            alert("Logging out...");
-            window.location.href = 'index.html';
-        }
-    });
+// Render the recipe table dynamically
+function renderRecipeTable() {
+  const tbody = document.querySelector('.recipe-table tbody');
+  if (!tbody) return;
 
-    /**
-     * 4. Add to Favorites Logic
-     * Saves the recipe ID to an array in localStorage
-     */
-window.addToFavorites = function (recipeId, name, link, event) {
-    if (!isLoggedIn) {
-        alert("You must be logged in!");
-        return;
-    }
+  const recipes = getRecipes();
+  const favorites = getFavorites();
 
-    let favorites = JSON.parse(localStorage.getItem('userFavorites')) || [];
+  tbody.innerHTML = recipes.map(recipe => {
+    const isFavorited = favorites.some(fav => fav.id === recipe.id);
+    const activeClass = isFavorited ? 'active' : '';
+    // Escape single quotes in recipe name for onclick attribute
+    const escapedName = recipe.name.replace(/'/g, "\\'");
+    return `
+      <tr>
+        <td>${recipe.id}</td>
+        <td>${recipe.name}</td>
+        <td>${recipe.course}</td>
+        <td>
+          <a href="recipe-detail.html?id=${recipe.id}" class="view-link">View Details</a>
+          <button class="heart-btn ${activeClass}" onclick="toggleFavorite('${recipe.id}', '${escapedName}', 'recipe-detail.html?id=${recipe.id}', this)">❤</button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
 
-    // Check if already exists
-    if (!favorites.find(r => r.id === recipeId)) {
-        favorites.push({ id: recipeId, name: name, link: link }); // Save object
-        localStorage.setItem('userFavorites', JSON.stringify(favorites));
-        alert("Recipe added!");
-    }
+// Toggle favourite status when heart is clicked
+window.toggleFavorite = function(recipeId, name, link, buttonElement) {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  if (!isLoggedIn) {
+    alert('Please log in to save favourites.');
+    return;
+  }
+
+  let favorites = getFavorites();
+  const existingIndex = favorites.findIndex(fav => fav.id === recipeId);
+
+  if (existingIndex === -1) {
+    // Add to favourites
+    favorites.push({ id: recipeId, name: name, link: link });
+    buttonElement.classList.add('active');
+  } else {
+    // Remove from favourites
+    favorites.splice(existingIndex, 1);
+    buttonElement.classList.remove('active');
+  }
+
+  saveFavorites(favorites);
 };
+
+// Initialise on page load
+document.addEventListener('DOMContentLoaded', () => {
+  renderRecipeTable();
 });
