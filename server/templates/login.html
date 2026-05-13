@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../../src/styles/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <div id="error-message"></div>
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+        <div class="nav-link">
+            <style>
+                .nav-link {
+                    margin-top: 15px;
+                    font-size: 0.9em;
+                }
+                .nav-link a {
+                    color: #e67e22;
+                    text-decoration: none;
+                }
+                .nav-link a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            Don't have an account? <a href="signup.html">Sign up here</a>
+        </div>
+    </div>
+    <script src="../../src/scripts/login.js"></script>
+</body>
+</html>

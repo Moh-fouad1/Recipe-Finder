@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+    <link rel="stylesheet" href="../../src/styles/admin.css">
+    <link rel="stylesheet" href="../../src/styles/nav-bar.css">
+</head>
+<body>
+
+<nav class="navbar">
+        <div class="logo">Recipe<span>Finder</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="recipes.html">Browse</a></li>
+            <li><a href="search_results.html">Search</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+    </nav>
+
+<h1>Edit Recipe</h1>
+
+<div class="form-container">
+    <form id="edit-recipe-form">
+
+        <label for="recipe-id">Recipe ID (Read-only)</label>
+        <input type="number" id="recipe-id" required readonly>
+
+        <label for="recipe-name">Recipe Name</label>
+        <input type="text" id="recipe-name" placeholder="Enter recipe name" required>
+
+        <label for="recipe-course">Course</label>
+        <select id="recipe-course" required>
+            <option value="Main Course">Main Course</option>
+            <option value="Appetizers">Appetizers</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Beverages">Beverages</option>
+        </select>
+
+        <h3>Ingredients</h3>
+        <div id="ingredients-container">
+        </div>
+        <button type="button" class="btn btn-sm" onclick="addIngredientRow(document.getElementById('ingredients-container'), '', '', '')" style="margin-bottom: 2rem; background: #64748b;">+ Add Ingredient Row</button>
+
+        <label for="recipe-desc">Description</label>
+        <textarea id="recipe-desc" placeholder="Enter recipe description" required></textarea>
+
+        <button type="submit" class="btn">Save Changes</button>
+    </form>
+</div>
+<script src="../../src/scripts/data.js"></script>
+<script src="../../src/scripts/admin.js" defer></script>
+<script src="../../src/scripts/nav-bar.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="../../src/styles/signup.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phonenumber">Phone Number:</label>
+                <input type="tel" id="phonenumber" name="phonenumber">
+            </div>
+
+            <div class="form-group">
+                <label for="AccountType">Account Type:</label>
+                <select id="AccountType" name="AccountType" required>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="checkpasswordmatch" name="checkpasswordmatch">
+                <label for="checkpasswordmatch">Check Password Match</label>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Accept Terms and Conditions</label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="nav-link">
+            <style>
+                .nav-link {
+                    margin-top: 15px;
+                    font-size: 0.9em;
+                }
+                .nav-link a {
+                    color: #e67e22;
+                    text-decoration: none;
+                }
+                .nav-link a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+            Already have an account? <a href="login.html">Login here</a>
+        </div>
+    </div>
+    <script src="../../src/scripts/signup.js"></script>
+</body>
+</html>

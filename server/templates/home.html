@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder | Home</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Recipe<span>Finder</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="recipes.html">Browse</a></li>
+            <li><a href="search_results.html">Search</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Discover & Share Amazing Recipes</h1>
+            <p>Connect with food lovers, browse thousands of dishes, and master your cooking skills.</p>
+            <div class="hero-buttons">
+                <a href="recipes.html" class="btn-primary">Start Browsing</a>
+                <a href="signup.html" class="btn-secondary" id="join-btn">Join the Community</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>Search Easily</h3>
+            <p>Find meals by name or by the ingredients you have in your fridge.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Save Favorites</h3>
+            <p>Keep track of the recipes you love and access them anytime.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Admin Tools</h3>
+            <p>Admins can easily add, edit, or remove recipes to keep the list fresh.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Recipe Finder Project</p>
+    </footer>
+
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/nav-bar.js' %}"></script>
+
+</body>
+</html>

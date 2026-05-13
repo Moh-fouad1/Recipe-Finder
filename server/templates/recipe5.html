@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details - Buffalo Wings</title>
+    <link rel="stylesheet" href="../../src/styles/recipes.css">
+    <link rel="stylesheet" href="../../src/styles/nav-bar.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Recipe<span>Finder</span></div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="recipes.html">Browse</a></li>
+            <li><a href="search_results.html">Search</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html" class="btn-signup">Sign Up</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="recipe-card">
+            <h1>Spicy Buffalo Wings</h1>
+            <p><b>Recipe ID:</b> 5 | <b>Course:</b> Appetizers</p>
+
+            <h3>Ingredients</h3>
+            <table class="recipe-table">
+                <tr>
+                    <th>Ingredient ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr><td>501</td><td>Chicken Wings</td><td>10 pieces</td></tr>
+                <tr><td>502</td><td>Buffalo Sauce</td><td>0.5 cups</td></tr>
+                <tr><td>503</td><td>Butter</td><td>2 tbsp</td></tr>
+            </table>
+
+            <h3>Description</h3>
+            <p>Bake or fry wings until crispy. Toss in a mixture of buffalo sauce and melted butter. Serve with celery and blue cheese dressing.</p>
+
+            <button class="btn-signup" onclick="addToFavorites('5', event)">Add to Favorites</button>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 Recipe Finder Project</p></footer>
+    <script src="../../src/scripts/recipes.js"></script>
+    <script src="../../src/scripts/nav-bar.js"></script>
+</body>
+</html>
