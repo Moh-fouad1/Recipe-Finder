@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    min-height: 100vh;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1, .table-container, .form-container, a.btn[href="admin_add_recipe.html"] {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+h1 {
+    margin-top: 32px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+button, .btn {
+    background-color: #e67e22;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+button:hover, .btn:hover {
+    background-color: #d35400;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 0.875rem;
+    margin: 0 0.2rem;
+}
+
+.table-container {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow-x: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-weight: 600;
+    color: #2c3e50;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+}
+
+tr:hover td {
+    background-color: #f1f1f1;
+}
+
+td a {
+    color: #e67e22;
+    text-decoration: none;
+    margin-right: 0.75rem;
+    font-weight: 500;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+.form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #e67e22;
+}
+
+form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+h3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #2c3e50;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.ingredient-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.ingredient-row input {
+    margin-bottom: 0 !important;
+}
+
+a.btn[href="admin_add_recipe.html"] {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 1.5rem auto;
+}

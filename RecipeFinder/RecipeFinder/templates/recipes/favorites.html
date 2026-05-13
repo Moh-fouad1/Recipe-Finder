@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} - My Favorites{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>My Favorite Recipes</h2>
+    {% if favorites %}
+        <ul id="favoritesList">
+            {% for fav in favorites %}
+                <li>
+                    <div><strong>{{ fav.recipe.name }}</strong></div>
+                    <div class="action-buttons">
+                        <a href="{% url 'recipes:recipe_detail' fav.recipe.id %}" class="view-btn">View Details</a>
+                        <form method="post" action="{% url 'recipes:toggle_favorite' fav.recipe.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button class="remove-btn">Remove</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No favorites added yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>Add New Recipe</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <h3>Ingredients</h3>
+    {{ formset.management_form }}
+    <div id="ingredients-container">
+        {% for ing_form in formset %}
+            <div class="ingredient-group">
+                {{ ing_form.as_p }}
+                {% if ing_form.instance.pk %}{{ ing_form.DELETE }}{% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <button type="button" id="add-ingredient">+ Add Another Ingredient</button>
+    <br><br>
+    <button type="submit">Add Recipe</button>
+</form>
+<script>
+    let ingredientIndex = {{ formset.total_form_count }};
+    document.getElementById('add-ingredient').addEventListener('click', function() {
+        const container = document.getElementById('ingredients-container');
+        const newDiv = document.createElement('div');
+        newDiv.className = 'ingredient-group';
+        newDiv.innerHTML = `
+            <p><label>Ingredient ID:</label> <input type="text" name="ingredients-${ingredientIndex}-ingredient_id"></p>
+            <p><label>Name:</label> <input type="text" name="ingredients-${ingredientIndex}-name"></p>
+            <p><label>Quantity:</label> <input type="text" name="ingredients-${ingredientIndex}-quantity"></p>
+            <input type="hidden" name="ingredients-${ingredientIndex}-id">
+            <input type="hidden" name="ingredients-${ingredientIndex}-recipe">
+        `;
+        container.appendChild(newDiv);
+        ingredientIndex++;
+        document.getElementById('id_ingredients-TOTAL_FORMS').value = ingredientIndex;
+    });
+</script>
+{% endblock %}

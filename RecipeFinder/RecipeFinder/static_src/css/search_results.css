@@ -1,0 +1,108 @@
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    padding-bottom: 3rem;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50; 
+    margin: 3rem 0 1.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+h3 {
+    color: #e67e22;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.8rem;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px 25px;
+    background-color: #e67e22; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    background-color: #cf711f; 
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #e0e0e0;
+    max-width: 800px;
+    margin: 3rem auto;
+}
+.results-list {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.result-item {
+    background: white;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.view-link {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-link:hover {
+    text-decoration: underline;
+}

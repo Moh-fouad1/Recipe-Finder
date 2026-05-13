@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/recipe-detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="recipe-card">
+        <h1>{{ recipe.name }}</h1>
+        <p><strong>Recipe ID:</strong> {{ recipe.id }} | <strong>Course:</strong> {{ recipe.course }}</p>
+        <h3>Ingredients</h3>
+        <ul class="ingredients-list">
+            {% for ing in recipe.ingredients.all %}
+                <li>{{ ing.quantity }} {{ ing.name }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Description</h3>
+        <p>{{ recipe.description }}</p>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'recipes:toggle_favorite' recipe.id %}">
+                {% csrf_token %}
+                <button class="btn {{ is_favorite|yesno:'active,' }}">{% if is_favorite %}Remove from Favorites{% else %}Add to Favorites{% endif %}</button>
+            </form>
+        {% endif %}
+        <button class="btn" onclick="history.back()">Go Back</button>
+    </div>
+</div>
+{% endblock %}

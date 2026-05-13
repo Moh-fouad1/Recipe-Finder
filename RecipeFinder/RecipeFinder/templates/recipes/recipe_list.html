@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} - Browse Recipes{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/recipes.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Available Recipes</h1>
+    <table class="recipe-table">
+        <thead>
+            <tr><th>ID</th><th>Name</th><th>Course</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            {% for recipe in recipes %}
+            <tr>
+                <td>{{ recipe.id }}</td>
+                <td>{{ recipe.name }}</td>
+                <td>{{ recipe.course }}</td>
+                <td>
+                    <a href="{% url 'recipes:recipe_detail' recipe.id %}" class="view-link">View Details</a>
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'recipes:toggle_favorite' recipe.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button class="heart-btn {% if recipe.id in user.favorites.values_list 'recipe_id' %}active{% endif %}">❤</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

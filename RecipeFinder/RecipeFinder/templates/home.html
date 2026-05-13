@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+<header class="hero">
+    <div class="hero-content">
+        <h1>Discover & Share Amazing Recipes</h1>
+        <p>Connect with food lovers, browse thousands of dishes, and master your cooking skills.</p>
+        <div class="hero-buttons">
+            <a href="{% url 'recipes:recipe_list' %}" class="btn-primary">Start Browsing</a>
+            {% if not user.is_authenticated %}
+                <a href="{% url 'signup' %}" class="btn-secondary">Join the Community</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+<section class="features">
+    <div class="feature-card">
+        <h3>Search Easily</h3>
+        <p>Find meals by name or by the ingredients you have in your fridge.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Save Favorites</h3>
+        <p>Keep track of the recipes you love and access them anytime.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Admin Tools</h3>
+        <p>Admins can easily add, edit, or remove recipes to keep the list fresh.</p>
+    </div>
+</section>
+{% endblock %}

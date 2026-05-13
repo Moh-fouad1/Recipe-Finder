@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} - Search{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Search Recipes</h2>
+    <form method="get" action="{% url 'recipes:search' %}">
+        <label for="q">Search by dish name:</label>
+        <input type="text" id="q" name="q" placeholder="e.g., Pasta" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+    <hr>
+    <h3>Search Results:</h3>
+    {% if query %}
+        {% if results %}
+            <ul class="results-list">
+                {% for recipe in results %}
+                    <li><a href="{% url 'recipes:recipe_detail' recipe.id %}">{{ recipe.name }}</a> - {{ recipe.course }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No recipes found matching "{{ query }}".</p>
+        {% endif %}
+    {% else %}
+        <p>Enter a search term above.</p>
+    {% endif %}
+</div>
+{% endblock %}

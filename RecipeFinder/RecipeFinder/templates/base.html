@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Recipe<span>Finder</span></div>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'recipes:recipe_list' %}">Browse</a></li>
+            <li><a href="{% url 'recipes:search' %}">Search</a></li>
+            {% if user.is_authenticated %}
+                {% if user.profile.account_type == 'admin' %}
+                    <li><a href="{% url 'recipes:manage_recipes' %}">Manage Recipes</a></li>
+                    <li><a href="{% url 'recipes:add_recipe' %}">Add Recipe</a></li>
+                {% else %}
+                    <li><a href="{% url 'recipes:favorites' %}">Favorites</a></li>
+                {% endif %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}" class="btn-signup">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <main>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2026 Recipe Finder Project</p>
+    </footer>
+    <script src="{% static 'js/base.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
