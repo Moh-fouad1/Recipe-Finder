@@ -1,2 +1,6 @@
 INFO 2026-05-18 10:33:38,976 utils Database backup created: backup_20260518_103338.sqlite3
 INFO 2026-05-18 10:36:30,583 services Admin mohamed2 updated recipe 1
+INFO 2026-05-18 10:46:01,180 exports Admin admin exported 8 recipes to CSV
+INFO 2026-05-18 10:46:01,187 exports Admin admin exported 8 recipes to PDF
+INFO 2026-05-18 10:50:48,938 exports Admin mohamed2 exported 8 recipes to PDF
+INFO 2026-05-18 10:51:12,339 exports Admin mohamed2 exported 8 recipes to CSV

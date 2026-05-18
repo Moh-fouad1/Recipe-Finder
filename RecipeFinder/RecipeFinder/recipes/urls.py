@@ -3,6 +3,8 @@ from django.urls import path
 from . import views
 from .admin_views import (
     AdminDashboardView,
+    AdminExportCSVView,
+    AdminExportPDFView,
     AdminRecipeCreateView,
     AdminRecipeDeleteView,
     AdminRecipeListView,
@@ -24,4 +26,6 @@ urlpatterns = [
     path('admin/add/', AdminRecipeCreateView.as_view(), name='add_recipe'),
     path('admin/edit/<str:pk>/', AdminRecipeUpdateView.as_view(), name='edit_recipe'),
     path('admin/delete/<str:pk>/', AdminRecipeDeleteView.as_view(), name='delete_recipe'),
+    path('admin/export/csv/', AdminExportCSVView.as_view(), name='export_csv'),
+    path('admin/export/pdf/', AdminExportPDFView.as_view(), name='export_pdf'),
 ]

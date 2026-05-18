@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from django.views.generic import TemplateView
 
+from .exports import build_export_csv_response, build_export_pdf_response, get_filtered_recipes_for_export
 from .forms import IngredientFormSet, RecipeForm
 from .mixins import AdminRequiredMixin
 from .models import Recipe
@@ -113,3 +114,33 @@ class AdminRecipeDeleteView(AdminRequiredMixin, View):
             logger.exception('Failed to delete recipe %s: %s', pk, exc)
             messages.error(request, 'Could not delete recipe.')
         return redirect('recipes:manage_recipes')
+
+
+class AdminExportCSVView(AdminRequiredMixin, View):
+    """Download filtered recipes as CSV."""
+
+    def get(self, request):
+        query = request.GET.get('q', '').strip()
+        course = request.GET.get('course', '').strip()
+        try:
+            recipes = get_filtered_recipes_for_export(query, course)
+            return build_export_csv_response(recipes, request.user.username)
+        except Exception as exc:
+            logger.exception('CSV export failed: %s', exc)
+            messages.error(request, 'Could not generate CSV export.')
+            return redirect('recipes:manage_recipes')
+
+
+class AdminExportPDFView(AdminRequiredMixin, View):
+    """Download filtered recipes as PDF."""
+
+    def get(self, request):
+        query = request.GET.get('q', '').strip()
+        course = request.GET.get('course', '').strip()
+        try:
+            recipes = get_filtered_recipes_for_export(query, course)
+            return build_export_pdf_response(recipes, request.user.username, query, course)
+        except Exception as exc:
+            logger.exception('PDF export failed: %s', exc)
+            messages.error(request, 'Could not generate PDF export.')
+            return redirect('recipes:manage_recipes')
