@@ -24,37 +24,37 @@ This phase focuses on building **user-friendly HTML pages without using framewor
 
 ### Admin
 
-* Sign up
-* Login
-* Add new recipes
-* Edit existing recipes
-* Delete recipes
-* View recipe list
+- Sign up
+- Login
+- Add new recipes
+- Edit existing recipes
+- Delete recipes
+- View recipe list
 
 ### User
 
-* Sign up
-* Login
-* Browse recipes
-* Search recipes by name or ingredients
-* View recipe details
-* Add recipes to favorites
-* View favorites list
+- Sign up
+- Login
+- Browse recipes
+- Search recipes by name or ingredients
+- View recipe details
+- Add recipes to favorites
+- View favorites list
 
 ---
 
 ## Website Pages
 
-* `index.html` – Homepage
-* `signup.html` – User/Admin registration
-* `login.html` – Login page
-* `recipes.html` – List of recipes
-* `recipe_details.html` – Recipe instructions
-* `search_results.html` – Search results page
-* `favorites.html` – User favorites list
-* `admin_add_recipe.html` – Admin adds new recipes
-* `admin_manage_recipes.html` – Admin manages recipes
-* `cover.html` – Project cover page
+- `index.html` – Homepage
+- `signup.html` – User/Admin registration
+- `login.html` – Login page
+- `recipes.html` – List of recipes
+- `recipe_details.html` – Recipe instructions
+- `search_results.html` – Search results page
+- `favorites.html` – User favorites list
+- `admin_add_recipe.html` – Admin adds new recipes
+- `admin_manage_recipes.html` – Admin manages recipes
+- `cover.html` – Project cover page
 
 ---
 
@@ -84,14 +84,16 @@ RecipeFinder/
 
 ## Team Members
 
-| Name          | Student ID |
-| ------------- | ---------- |
-| Mohamed Fouad | 20240522   |
-| Yousef Semary | 20240676   |
-| Romissa Medhat| 20240201   |
-| Hassan Abdul- | 20240163   |
-| Omar Abdul-   | 20240376   |
-| Habiba Ehab   | 20240159   |
+
+| Name           | Student ID |
+| -------------- | ---------- |
+| Mohamed Fouad  | 20240522   |
+| Yousef Semary  | 20240676   |
+| Romissa Medhat | 20240201   |
+| Hassan Abdul-  | 20240163   |
+| Omar Abdul-    | 20240376   |
+| Habiba Ehab    | 20240159   |
+
 
 ---
 
@@ -107,13 +109,14 @@ No additional setup is required since this phase uses **HTML and CSS only**.
 
 ## Technologies Used
 
-* HTML5
-* CSS3
+- HTML5
+- CSS3
 
 ---
 
 ## Notes
 
-* No frameworks were used as required in the project instructions.
-* The navigation bar is included in all pages.
-* The navbar will be dynamically adjusted in later phases.
+- No frameworks were used as required in the project instructions.
+- The navigation bar is included in all pages.
+- The navbar will be dynamically adjusted in later phases.
+

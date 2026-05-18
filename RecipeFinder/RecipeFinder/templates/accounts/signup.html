@@ -1,12 +1,86 @@
-{% extends 'base.html' %}
+{% extends 'accounts/auth_base.html' %}
+{% load static %}
+{% block auth_title %}Sign up — Recipe Finder{% endblock %}
+{% block auth_css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<style>
+    .auth-flash { max-width: 500px; margin: 1rem auto 0; padding: 0.75rem 1rem; border-radius: 8px; text-align: center; font-size: 0.95rem; }
+    .auth-flash-success { background: #d4edda; color: #155724; }
+    .auth-flash-error { background: #f8d7da; color: #721c24; }
+    .signup-container .nav-link a { color: #e67e22; text-decoration: none; }
+    .signup-container .nav-link a:hover { text-decoration: underline; }
+</style>
+{% endblock %}
 {% block content %}
 <div class="signup-container">
-    <h2>Sign Up</h2>
-    <form method="post">
+    <h2>Sign up</h2>
+    <form method="post" action="{% url 'signup' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
+
+        {% if form.non_field_errors %}
+            <div id="error-message" class="form-errors">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="firstname">First name:</label>
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="lastname">Last name:</label>
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="phonenumber">Phone number:</label>
+            {{ form.phone }}
+            {{ form.phone.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="AccountType">Account type:</label>
+            {{ form.account_type }}
+            {{ form.account_type.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username:</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">Confirm password:</label>
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+        </div>
+
+        <div class="form-group checkbox-group">
+            {{ form.accept_terms }}
+            <label for="terms">{{ form.accept_terms.label }}</label>
+        </div>
+        {{ form.accept_terms.errors }}
+
+        <div class="form-group">
+            <button type="submit">Sign up</button>
+        </div>
     </form>
-    <div class="nav-link">Already have an account? <a href="{% url 'login' %}">Login here</a></div>
+    <div class="nav-link" style="margin-top: 15px; font-size: 0.9em; text-align: center;">
+        Already have an account? <a href="{% url 'login' %}">Login here</a>
+    </div>
 </div>
 {% endblock %}

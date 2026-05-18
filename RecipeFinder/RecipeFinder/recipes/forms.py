@@ -9,6 +9,11 @@ class RecipeForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'rows': 4}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.pk:
+            self.fields['id'].disabled = True
+
 IngredientFormSet = forms.inlineformset_factory(
     Recipe, Ingredient, fields=('ingredient_id', 'name', 'quantity'),
     extra=1, can_delete=True, widgets={

@@ -1,9 +1,31 @@
+from functools import wraps
+
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Q
+from django.urls import reverse
+
 from .models import Recipe, Favorite
 from .forms import RecipeForm, IngredientFormSet
+
+
+def admin_only(view_func):
+    """Require login and profile.account_type == 'admin'; otherwise redirect with a message."""
+
+    @wraps(view_func)
+    def _wrapped(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            login_url = reverse('login')
+            return redirect(f'{login_url}?next={request.get_full_path()}')
+        if not hasattr(request.user, 'profile'):
+            messages.error(request, 'Your account profile is missing. Please contact support.')
+            return redirect('home')
+        if request.user.profile.account_type != 'admin':
+            messages.error(request, 'You need an admin account to access that page.')
+            return redirect('home')
+        return view_func(request, *args, **kwargs)
+
+    return _wrapped
 
 def home(request):
     return render(request, 'home.html')
@@ -40,15 +62,12 @@ def search_results(request):
     results = Recipe.objects.filter(name__icontains=query) if query else []
     return render(request, 'recipes/search_results.html', {'query': query, 'results': results})
 
-def admin_required(user):
-    return user.is_authenticated and hasattr(user, 'profile') and user.profile.account_type == 'admin'
-
-@user_passes_test(admin_required)
+@admin_only
 def manage_recipes(request):
     recipes = Recipe.objects.all().order_by('id')
     return render(request, 'recipes/admin/manage_recipes.html', {'recipes': recipes})
 
-@user_passes_test(admin_required)
+@admin_only
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST)
@@ -69,7 +88,7 @@ def add_recipe(request):
         formset = IngredientFormSet()
     return render(request, 'recipes/admin/add_recipe.html', {'form': form, 'formset': formset})
 
-@user_passes_test(admin_required)
+@admin_only
 def edit_recipe(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
     if request.method == 'POST':
@@ -85,7 +104,7 @@ def edit_recipe(request, pk):
         formset = IngredientFormSet(instance=recipe)
     return render(request, 'recipes/admin/edit_recipe.html', {'form': form, 'formset': formset, 'recipe': recipe})
 
-@user_passes_test(admin_required)
+@admin_only
 def delete_recipe(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
     if request.method == 'POST':

@@ -5,7 +5,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body {
+        body.auth-page {
             background-color: #f9f9f9;
             display: flex;
             justify-content: center;
@@ -38,8 +38,9 @@
             font-weight: 500;
         }
 
-        input[type="text"],
-        input[type="password"] {
+        body.auth-page input[type="text"],
+        body.auth-page input[type="password"],
+        body.auth-page input[type="email"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -47,8 +48,9 @@
             font-size: 1rem;
         }
 
-        input[type="text"]:focus,
-        input[type="password"]:focus {
+        body.auth-page input[type="text"]:focus,
+        body.auth-page input[type="password"]:focus,
+        body.auth-page input[type="email"]:focus {
             outline: none;
             border-color: #e67e22;
         }
@@ -69,8 +71,33 @@
             background-color: #d35400;
         }
 
-        #error-message {
-            color: red;
+        #error-message,
+        body.auth-page .form-errors {
+            color: #c0392b;
             margin-bottom: 1rem;
             text-align: center;
+        }
+
+        body.auth-page ul.errorlist {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0.75rem;
+            font-size: 0.9rem;
+            color: #c0392b;
+        }
+
+        body.auth-page .auth-home-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        body.auth-page .auth-home-link a {
+            color: #e67e22;
+            text-decoration: none;
+        }
+
+        body.auth-page .auth-home-link a:hover {
+            text-decoration: underline;
         }

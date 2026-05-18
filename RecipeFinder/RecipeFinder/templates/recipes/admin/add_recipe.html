@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}— Add recipe{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin_style.css' %}">
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
 {% block content %}
 <h2>Add New Recipe</h2>
 <form method="post">
