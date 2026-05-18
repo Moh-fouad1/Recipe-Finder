@@ -7,43 +7,15 @@
 {% endblock %}
 {% block content %}
 <h2>Edit recipe</h2>
-<p style="max-width: 900px; margin: 0 auto 1rem; color: #555; text-align: center;">ID: <strong>{{ recipe.id }}</strong></p>
-
-<form method="post">
+<form method="post" enctype="multipart/form-data" class="admin-recipe-form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <h3>Ingredients</h3>
-    {{ formset.management_form }}
-    <div id="ingredients-container">
-        {% for ing_form in formset %}
-            <div class="ingredient-group">
-                {{ ing_form.as_p }}
-                {% if ing_form.instance.pk %}{{ ing_form.DELETE }}{% endif %}
-            </div>
-        {% endfor %}
+    {% include 'recipes/admin/_recipe_form.html' %}
+    <div class="form-actions">
+        <button type="submit" class="btn">Save changes</button>
+        <a href="{% url 'recipes:manage_recipes' %}" class="btn btn-secondary">Cancel</a>
     </div>
-    <button type="button" id="add-ingredient">+ Add another ingredient</button>
-    <br><br>
-    <button type="submit">Save changes</button>
-    <a href="{% url 'recipes:manage_recipes' %}" class="btn" style="margin-left: 0.5rem; background: #64748b;">Cancel</a>
 </form>
-<script>
-    let ingredientIndex = {{ formset.total_form_count }};
-    document.getElementById('add-ingredient').addEventListener('click', function() {
-        const container = document.getElementById('ingredients-container');
-        const newDiv = document.createElement('div');
-        newDiv.className = 'ingredient-group';
-        newDiv.innerHTML = `
-            <p><label>Ingredient ID:</label> <input type="text" name="ingredients-${ingredientIndex}-ingredient_id"></p>
-            <p><label>Name:</label> <input type="text" name="ingredients-${ingredientIndex}-name"></p>
-            <p><label>Quantity:</label> <input type="text" name="ingredients-${ingredientIndex}-quantity"></p>
-            <input type="hidden" name="ingredients-${ingredientIndex}-id" id="id_ingredients-${ingredientIndex}-id">
-            <input type="hidden" name="ingredients-${ingredientIndex}-recipe" id="id_ingredients-${ingredientIndex}-recipe" value="{{ recipe.pk }}">
-            <input type="hidden" name="ingredients-${ingredientIndex}-DELETE" id="id_ingredients-${ingredientIndex}-DELETE">
-        `;
-        container.appendChild(newDiv);
-        ingredientIndex++;
-        document.getElementById('id_ingredients-TOTAL_FORMS').value = ingredientIndex;
-    });
-</script>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/admin_forms.js' %}"></script>
 {% endblock %}

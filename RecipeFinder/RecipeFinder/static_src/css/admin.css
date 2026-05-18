@@ -170,3 +170,127 @@ a.btn[href="admin_add_recipe.html"] {
     width: fit-content;
     margin: 0 auto 1.5rem auto;
 }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    color: #e67e22;
+    border: none;
+    margin: 0 0 0.5rem;
+    padding: 0;
+}
+
+.stat-card p {
+    color: #555;
+    margin: 0;
+}
+
+.admin-toolbar {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-form {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    width: 90%;
+    max-width: 800px;
+}
+
+.filter-form input,
+.filter-form select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn-secondary {
+    background-color: #64748b;
+}
+
+.btn-secondary:hover {
+    background-color: #475569;
+}
+
+.recipe-thumb,
+.recipe-preview {
+    max-width: 80px;
+    max-height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.recipe-preview {
+    max-width: 200px;
+    max-height: 150px;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.form-row {
+    margin-bottom: 1rem;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.form-errors,
+ul.errorlist {
+    color: #c0392b;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.form-actions {
+    text-align: center;
+    margin: 1.5rem 0 3rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.ingredient-group {
+    border: 1px solid #eee;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.delete-checkbox {
+    display: block;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+form input[type="file"] {
+    margin-bottom: 1rem;
+}

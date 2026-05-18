@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}— Admin dashboard{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <h3>{{ stats.total_recipes }}</h3>
+        <p>Total recipes</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ stats.total_desserts }}</h3>
+        <p>Desserts</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ stats.total_appetizers }}</h3>
+        <p>Appetizers</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ stats.total_main_course }}</h3>
+        <p>Main courses</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ stats.total_users }}</h3>
+        <p>Registered users</p>
+    </div>
+</div>
+
+<div class="admin-actions" style="text-align:center; margin: 2rem 0;">
+    <a href="{% url 'recipes:manage_recipes' %}" class="btn">Manage recipes</a>
+    <a href="{% url 'recipes:add_recipe' %}" class="btn">Add recipe</a>
+</div>
+{% endblock %}

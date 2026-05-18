@@ -1,47 +1,92 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const addBtn = document.getElementById('addIngredientBtn');
-    if (!addBtn) return;
+document.addEventListener('DOMContentLoaded', function () {
+    var addBtn = document.getElementById('addIngredientBtn');
+    var container = document.getElementById('ingredients-container');
+    var totalForms = document.getElementById('id_ingredients-TOTAL_FORMS');
+    if (!addBtn || !container || !totalForms) return;
 
-    const container = document.getElementById('ingredients-container');
-    const totalForms = document.getElementById('id_ingredients-TOTAL_FORMS');
-    const formPrefix = 'ingredients';
+    var formPrefix = 'ingredients';
 
-    function getNewFormIndex() {
-        return parseInt(totalForms.value);
+    function bindRemoveButton(group) {
+        var btn = group.querySelector('.remove-ingredient');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+            var deleteInput = group.querySelector('input[name$="-DELETE"]');
+            var idInput = group.querySelector('input[name$="-id"]');
+            if (deleteInput && idInput && idInput.value) {
+                deleteInput.checked = true;
+                group.style.display = 'none';
+            } else {
+                group.remove();
+            }
+        });
     }
 
     function addIngredientRow() {
-        const idx = getNewFormIndex();
-        const newDiv = document.createElement('div');
-        newDiv.className = 'ingredient-group';
-        newDiv.innerHTML = `
-            <p>
-                <label for="id_${formPrefix}-${idx}-ingredient_id">Ingredient ID:</label>
-                <input type="text" name="${formPrefix}-${idx}-ingredient_id" id="id_${formPrefix}-${idx}-ingredient_id">
-            </p>
-            <p>
-                <label for="id_${formPrefix}-${idx}-name">Name:</label>
-                <input type="text" name="${formPrefix}-${idx}-name" id="id_${formPrefix}-${idx}-name" required>
-            </p>
-            <p>
-                <label for="id_${formPrefix}-${idx}-quantity">Quantity:</label>
-                <input type="text" name="${formPrefix}-${idx}-quantity" id="id_${formPrefix}-${idx}-quantity" required>
-            </p>
-            <input type="hidden" name="${formPrefix}-${idx}-id" id="id_${formPrefix}-${idx}-id">
-            <input type="hidden" name="${formPrefix}-${idx}-recipe" id="id_${formPrefix}-${idx}-recipe">
-            <button type="button" class="remove-ingredient" style="background:#e74c3c; margin-top:10px;">Remove</button>
-            <hr>
-        `;
-        container.appendChild(newDiv);
+        var idx = parseInt(totalForms.value, 10);
+        var group = document.createElement('div');
+        group.className = 'ingredient-group';
+
+        var nameRow = document.createElement('div');
+        nameRow.className = 'form-row';
+        var nameLabel = document.createElement('label');
+        nameLabel.setAttribute('for', 'id_' + formPrefix + '-' + idx + '-name');
+        nameLabel.textContent = 'Ingredient name';
+        var nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.name = formPrefix + '-' + idx + '-name';
+        nameInput.id = 'id_' + formPrefix + '-' + idx + '-name';
+        nameInput.placeholder = 'e.g. Flour';
+        nameInput.required = true;
+        nameRow.appendChild(nameLabel);
+        nameRow.appendChild(nameInput);
+
+        var qtyRow = document.createElement('div');
+        qtyRow.className = 'form-row';
+        var qtyLabel = document.createElement('label');
+        qtyLabel.setAttribute('for', 'id_' + formPrefix + '-' + idx + '-quantity');
+        qtyLabel.textContent = 'Quantity';
+        var qtyInput = document.createElement('input');
+        qtyInput.type = 'text';
+        qtyInput.name = formPrefix + '-' + idx + '-quantity';
+        qtyInput.id = 'id_' + formPrefix + '-' + idx + '-quantity';
+        qtyInput.placeholder = 'e.g. 2 cups';
+        qtyInput.required = true;
+        qtyRow.appendChild(qtyLabel);
+        qtyRow.appendChild(qtyInput);
+
+        var hiddenId = document.createElement('input');
+        hiddenId.type = 'hidden';
+        hiddenId.name = formPrefix + '-' + idx + '-id';
+        hiddenId.id = 'id_' + formPrefix + '-' + idx + '-id';
+
+        var hiddenRecipe = document.createElement('input');
+        hiddenRecipe.type = 'hidden';
+        hiddenRecipe.name = formPrefix + '-' + idx + '-recipe';
+        hiddenRecipe.id = 'id_' + formPrefix + '-' + idx + '-recipe';
+
+        var hiddenDelete = document.createElement('input');
+        hiddenDelete.type = 'hidden';
+        hiddenDelete.name = formPrefix + '-' + idx + '-DELETE';
+        hiddenDelete.id = 'id_' + formPrefix + '-' + idx + '-DELETE';
+
+        var removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'remove-ingredient btn-danger btn-sm';
+        removeBtn.textContent = 'Remove';
+
+        group.appendChild(nameRow);
+        group.appendChild(qtyRow);
+        group.appendChild(hiddenId);
+        group.appendChild(hiddenRecipe);
+        group.appendChild(hiddenDelete);
+        group.appendChild(removeBtn);
+        group.appendChild(document.createElement('hr'));
+
+        container.appendChild(group);
         totalForms.value = idx + 1;
-        const removeBtn = newDiv.querySelector('.remove-ingredient');
-        removeBtn.addEventListener('click', () => newDiv.remove());
+        bindRemoveButton(group);
     }
 
     addBtn.addEventListener('click', addIngredientRow);
-    document.querySelectorAll('.remove-ingredient').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.target.closest('.ingredient-group').remove();
-        });
-    });
+    container.querySelectorAll('.ingredient-group').forEach(bindRemoveButton);
 });

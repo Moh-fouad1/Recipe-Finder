@@ -1,0 +1,74 @@
+{% comment %}Shared recipe + ingredient fields for add/edit admin forms.{% endcomment %}
+<div class="form-container">
+    {% if form.non_field_errors %}
+        <div class="form-errors">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <h3>Recipe information</h3>
+
+    <div class="form-row">
+        <label for="{{ form.id.id_for_label }}">Recipe ID</label>
+        {{ form.id }}
+        {% if form.id.errors %}<ul class="errorlist">{% for e in form.id.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        <small>Leave blank when adding to auto-generate.</small>
+    </div>
+
+    <div class="form-row">
+        <label for="{{ form.name.id_for_label }}">Recipe name *</label>
+        {{ form.name }}
+        {{ form.name.errors }}
+    </div>
+
+    <div class="form-row">
+        <label for="{{ form.course.id_for_label }}">Course *</label>
+        {{ form.course }}
+        {{ form.course.errors }}
+    </div>
+
+    <div class="form-row">
+        <label for="{{ form.description.id_for_label }}">Description *</label>
+        {{ form.description }}
+        {{ form.description.errors }}
+    </div>
+
+    <div class="form-row">
+        <label for="{{ form.image.id_for_label }}">Recipe image</label>
+        {{ form.image }}
+        {{ form.image.errors }}
+        {% if recipe and recipe.image %}
+            <p class="current-image">Current: <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" class="recipe-preview"></p>
+        {% endif %}
+    </div>
+
+    <h3>Ingredients</h3>
+    {{ formset.management_form }}
+    {% if formset.non_form_errors %}
+        <div class="form-errors">{{ formset.non_form_errors }}</div>
+    {% endif %}
+
+    <div id="ingredients-container">
+        {% for ing_form in formset %}
+            <div class="ingredient-group">
+                {{ ing_form.id }}
+                <div class="form-row">
+                    <label for="{{ ing_form.name.id_for_label }}">Ingredient name</label>
+                    {{ ing_form.name }}
+                    {{ ing_form.name.errors }}
+                </div>
+                <div class="form-row">
+                    <label for="{{ ing_form.quantity.id_for_label }}">Quantity</label>
+                    {{ ing_form.quantity }}
+                    {{ ing_form.quantity.errors }}
+                </div>
+                {% if ing_form.instance.pk %}
+                    <label class="delete-checkbox">{{ ing_form.DELETE }} Remove</label>
+                {% else %}
+                    <button type="button" class="remove-ingredient btn-danger btn-sm">Remove</button>
+                {% endif %}
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="button" id="addIngredientBtn" class="btn btn-secondary">+ Add ingredient</button>
+</div>
