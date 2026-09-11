@@ -1,89 +1,156 @@
-# Recipe Finder Website
+# Recipe Finder
 
-## Course
+A web application for discovering, searching, and managing recipes.
 
-IS231 – Web Technology
-Faculty of Computers and Information
+The platform provides a simple interface for users to browse recipes, search by name or ingredients, view detailed cooking instructions, and save recipes to their favorites. It also includes an administrative interface for managing the recipe collection.
 
-## Project Phase
+---
 
-Phase 1 – HTML Implementation
+## Overview
 
-## Project Description
+Recipe Finder was developed as a web technology project with a focus on building a complete recipe browsing and management experience.
 
-The **Recipe Finder Website** is a web application that helps users browse and search for recipes and view detailed instructions.
-The system supports two types of users: **Admin** and **User**.
+The application supports two main types of users:
 
-Admins can manage recipes by adding, editing, and deleting them, while users can search for recipes and add them to their favorites list.
-
-This phase focuses on building **user-friendly HTML pages without using frameworks**.
+* **Users** — browse, search, view, and save recipes
+* **Administrators** — manage the recipe database and user-facing content
 
 ---
 
 ## Features
 
-### Admin
+### User Features
 
-- Sign up
-- Login
-- Add new recipes
-- Edit existing recipes
-- Delete recipes
-- View recipe list
+* User registration
+* User login
+* Browse available recipes
+* Search recipes by name or ingredients
+* View detailed recipe instructions
+* Add recipes to favorites
+* View saved favorite recipes
 
-### User
+### Admin Features
 
-- Sign up
-- Login
-- Browse recipes
-- Search recipes by name or ingredients
-- View recipe details
-- Add recipes to favorites
-- View favorites list
+* Admin registration and authentication
+* Add new recipes
+* Edit existing recipes
+* Delete recipes
+* View and manage the recipe collection
 
 ---
 
-## Website Pages
+## Pages
 
-- `index.html` – Homepage
-- `signup.html` – User/Admin registration
-- `login.html` – Login page
-- `recipes.html` – List of recipes
-- `recipe_details.html` – Recipe instructions
-- `search_results.html` – Search results page
-- `favorites.html` – User favorites list
-- `admin_add_recipe.html` – Admin adds new recipes
-- `admin_manage_recipes.html` – Admin manages recipes
-- `cover.html` – Project cover page
+The application includes dedicated pages for the main user workflows:
+
+| Page                        | Description                         |
+| --------------------------- | ----------------------------------- |
+| `index.html`                | Homepage                            |
+| `signup.html`               | User and admin registration         |
+| `login.html`                | Authentication                      |
+| `recipes.html`              | Recipe listing                      |
+| `recipe_details.html`       | Recipe information and instructions |
+| `search_results.html`       | Search results                      |
+| `favorites.html`            | Saved recipes                       |
+| `admin_add_recipe.html`     | Add a recipe                        |
+| `admin_manage_recipes.html` | Manage existing recipes             |
+| `cover.html`                | Project landing/cover page          |
 
 ---
 
 ## Project Structure
 
-```
-RecipeFinder/
+```text
+Web-project/
 │
-├── index.html
-├── signup.html
-├── login.html
-├── recipes.html
-├── recipe_details.html
-├── search_results.html
-├── favorites.html
-├── admin_add_recipe.html
-├── admin_manage_recipes.html
-├── cover.html
+├── RecipeFinder/
+│   ├── index.html
+│   ├── signup.html
+│   ├── login.html
+│   ├── recipes.html
+│   ├── recipe_details.html
+│   ├── search_results.html
+│   ├── favorites.html
+│   ├── admin_add_recipe.html
+│   ├── admin_manage_recipes.html
+│   └── cover.html
 │
-├── css/
-│   └── style.css
+├── client/
 │
-└── images/
+├── README.md
+├── requriments.txt
+└── users.txt
 ```
 
 ---
 
-## Team Members
+## Technologies
 
+### Frontend
+
+* HTML5
+* CSS3
+
+### Development
+
+* Git
+* GitHub
+
+The initial implementation was developed without frontend frameworks as required by the project specifications.
+
+---
+
+## Application Flow
+
+### User
+
+```text
+Register / Login
+       ↓
+Browse Recipes
+       ↓
+Search or Select Recipe
+       ↓
+View Recipe Details
+       ↓
+Add to Favorites
+       ↓
+View Favorites
+```
+
+### Administrator
+
+```text
+Admin Login
+     ↓
+Recipe Management
+     ↓
+┌──────────────┬──────────────┬──────────────┐
+│ Add Recipe   │ Edit Recipe  │ Delete Recipe│
+└──────────────┴──────────────┴──────────────┘
+```
+
+---
+
+## How to Run
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Moh-fouad1/Web-project.git
+```
+
+Open the project directory and launch:
+
+```text
+RecipeFinder/index.html
+```
+
+The initial frontend implementation does not require a build system or additional dependencies.
+
+---
+
+## Team
 
 | Name           | Student ID |
 | -------------- | ---------- |
@@ -94,29 +161,32 @@ RecipeFinder/
 | Omar Abdul-    | 20240376   |
 | Habiba Ehab    | 20240159   |
 
+---
+
+## Project Goals
+
+The project focused on applying web development fundamentals to a practical application while implementing:
+
+* Structured web pages
+* User authentication flows
+* Recipe browsing
+* Search functionality
+* Favorites management
+* Administrative CRUD operations
+* Consistent navigation
+* Responsive and user-friendly interfaces
+* Collaborative development using Git and GitHub
 
 ---
 
-## How to Run the Project
+## Project Status
 
-1. Download or clone the repository.
-2. Open the project folder.
-3. Open `index.html` in a web browser.
-
-No additional setup is required since this phase uses **HTML and CSS only**.
+Completed project.
 
 ---
 
-## Technologies Used
+## License
 
-- HTML5
-- CSS3
+This project was developed as part of an academic team project.
 
----
-
-## Notes
-
-- No frameworks were used as required in the project instructions.
-- The navigation bar is included in all pages.
-- The navbar will be dynamically adjusted in later phases.
-
+The source code is provided for educational and portfolio purposes. Please contact the authors before using or redistributing the project commercially.
